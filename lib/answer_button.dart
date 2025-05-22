@@ -20,7 +20,7 @@ class AnswerButton extends StatelessWidget {
         foregroundColor: Colors.white,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
       ),
-      child: Text(answerText),
+      child: Text(answerText, textAlign: TextAlign.center),
     );
   }
 }
