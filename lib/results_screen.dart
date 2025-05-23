@@ -4,11 +4,17 @@ import 'package:flutterquiz/models/questions_summary.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen({
+    super.key,
+    required this.chosenAnswers,
+    required this.restartQuiz,
+  });
 
   final List<String> chosenAnswers;
 
-  List<Map<String, Object>> getSummaryData() {
+  final Function() restartQuiz;
+
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -25,7 +31,6 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
     final numCorrectQuestions =
         summaryData
@@ -37,7 +42,7 @@ class ResultsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(40),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple.shade800, Colors.deepPurple.shade600],
+            colors: [Color(0xff1f005c), Color(0xff5b0060), Color(0xff870160)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -81,7 +86,7 @@ class ResultsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: () {},
+              onPressed: restartQuiz,
               child: Text(
                 'Recomeçar Quiz',
                 style: GoogleFonts.lato(
